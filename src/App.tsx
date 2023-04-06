@@ -17,10 +17,13 @@ const App = () => {
   };
 
   const addTask = (): void => {
-    const newTask = { taskName: task, deadline: deadline };
-    setTodolist([...todoList, newTask]);
-    console.log(todoList);
-    setTask("");
+    if (task.trim() !== "") {
+      // trim() removes whitespace from both sides of a string (in this case, the task)
+      const newTask = { taskName: task, deadline: deadline };
+      setTodolist([...todoList, newTask]);
+      console.log(todoList);
+      setTask("");
+    }
   };
 
   const completeTask = (taskNameToDelete: string): void => {
