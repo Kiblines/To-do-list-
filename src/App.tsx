@@ -7,7 +7,6 @@ const App = () => {
   const [task, setTask] = useState<string>("");
   const [deadline, setDeadline] = useState<number>(0);
   const [todoList, setTodolist] = useState<ITask[]>([]);
-  const [editableTask, setEditableTask] = useState<ITask | null>(null);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.name === "task") {
@@ -19,10 +18,11 @@ const App = () => {
 
   const addTask = (): void => {
     if (task.trim() !== "") {
+      // trim() removes whitespace from both sides of a string (in this case, the task)
       const newTask = { taskName: task, deadline: deadline };
       setTodolist([...todoList, newTask]);
+      console.log(todoList);
       setTask("");
-      setDeadline(0);
     }
   };
 
@@ -38,34 +38,6 @@ const App = () => {
     setTodolist([]);
   };
 
-  const editTask = (taskToEdit: ITask): void => {
-    setEditableTask(taskToEdit);
-    setTask(taskToEdit.taskName);
-    setDeadline(taskToEdit.deadline);
-  };
-
-  const saveTask = (): void => {
-    if (editableTask) {
-      const updatedTaskList = todoList.map((task) => {
-        if (task === editableTask) {
-          return { taskName: task.taskName, deadline: deadline };
-        } else {
-          return task;
-        }
-      });
-      setTodolist(updatedTaskList);
-      setEditableTask(null);
-      setTask("");
-      setDeadline(0);
-    }
-  };
-
-  const cancelEdit = (): void => {
-    setEditableTask(null);
-    setTask("");
-    setDeadline(0);
-  };
-
   return (
     <div className="App">
       <h1>To-do List</h1>
@@ -77,7 +49,7 @@ const App = () => {
           value={task}
           placeholder="Enter your task"
           onChange={handleChange}
-        />
+        ></input>
         <input
           className="input"
           type="number"
@@ -85,29 +57,16 @@ const App = () => {
           value={deadline}
           placeholder="Deadline"
           onChange={handleChange}
-        />
-        {editableTask ? (
-          <>
-            <button onClick={saveTask}>Save</button>
-            <button onClick={cancelEdit}>Cancel</button>
-          </>
-        ) : (
-          <button onClick={addTask}>Add Task</button>
-        )}
+        ></input>
+        <button onClick={addTask}>Add Task</button>
         <button onClick={clearAllTasks}>Clear All</button>
       </div>
       <div className="todoList">
         {todoList.map((task: ITask, key: number) => {
-          return (
-            <TodoTask
-              key={key}
-              task={task}
-              completeTask={completeTask}
-              editTask={editTask}
-            />
-          );
+          return <TodoTask key={key} task={task} completeTask={completeTask} />;
         })}
       </div>
+
       <div className="list"></div>
       <div className="txt">
         <p>
@@ -120,4 +79,3 @@ const App = () => {
 };
 
 export default App;
-``;
