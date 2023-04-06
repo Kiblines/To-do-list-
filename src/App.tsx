@@ -34,6 +34,10 @@ const App = () => {
     );
   };
 
+  const clearAllTasks = (): void => {
+    setTodolist([]);
+  };
+
   return (
     <div className="App">
       <h1>To-do List</h1>
@@ -46,7 +50,6 @@ const App = () => {
           placeholder="Enter your task"
           onChange={handleChange}
         ></input>
-
         <input
           className="input"
           type="number"
@@ -56,7 +59,7 @@ const App = () => {
           onChange={handleChange}
         ></input>
 
-        <button onClick={addTask}>Add Task</button>
+        <button onClick={clearAllTasks}>Clear All</button>
       </div>
       <div className="todoList">
         {todoList.map((task: ITask, key: number) => {
