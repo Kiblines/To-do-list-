@@ -67,3 +67,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.btn-delete {
+  background-color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background-color: red;
+  transition: color 300ms;
+}
