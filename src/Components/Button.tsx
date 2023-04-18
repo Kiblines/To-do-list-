@@ -2,9 +2,9 @@ import React from "react";
 
 type ButtonProps = {
   onClick: () => void;
-  button: string;
+  name: string;
 };
 
 export default function Button(props: ButtonProps) {
-  return <button>{props.button}</button>;
+  return <button>{props.name}</button>;
 }

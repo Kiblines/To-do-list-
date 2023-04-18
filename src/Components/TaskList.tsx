@@ -1,5 +1,11 @@
 import React from "react";
+import { Task } from "../types/task";
+import TaskItem from "./TaskItem";
 
-export default function TaskList() {
+type TaskListProps = {
+  tasks: Task[];
+};
+
+export default function TaskList(props: TaskListProps) {
   return <div>TaskList</div>;
 }

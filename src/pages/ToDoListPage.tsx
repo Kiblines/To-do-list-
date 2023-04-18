@@ -6,8 +6,10 @@ export default function ToDoListPage() {
   return (
     <div>
       <Title title={"Quentin"}></Title>
-      <Button onClick={() => {}} button={"Add Task"}></Button>
-      <Button onClick={() => {}} button={"Edit"}></Button>
+      <input type="text" placeholder="Task"></input>
+      <input type="date" placeholder="Deadline"></input>
+      <Button onClick={() => {}} name={"Add Task"}></Button>
+      <Button onClick={() => {}} name={"Clear"}></Button>
     </div>
   );
 }
