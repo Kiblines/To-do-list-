@@ -8,6 +8,7 @@ const App = () => {
   const [deadline, setDeadline] = useState<number>(0);
   const [todoList, setTodolist] = useState<ITask[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [editingTask, setEditingTask] = useState<ITask | null>(null);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.name === "task") {
@@ -19,6 +20,28 @@ const App = () => {
     }
   };
 
+  const handleEditChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    if (editingTask) {
+      setEditingTask({
+        ...editingTask,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleUpdateChange = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const newTodoList = todoList.map((task) => {
+      if (task.taskName === editingTask?.taskName) {
+        return { ...task, ...editingTask };
+      }
+      return task;
+    });
+    setTodolist(newTodoList);
+    setEditingTask(null);
+  };
+
   const addTask = (): void => {
     if (task.trim() !== "") {
       // trim() removes whitespace from both sides of a string (in this case, the task)
@@ -26,6 +49,7 @@ const App = () => {
       setTodolist([...todoList, newTask]);
       console.log(todoList);
       setTask("");
+      setEditingTask(null); // Reset editing task to null when adding a new task
     }
   };
 
@@ -57,6 +81,24 @@ const App = () => {
   const filteredTasks = todoList.filter((task) =>
     task.taskName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const editTask = (index: number): void => {
+    setEditingTask(todoList[index]);
+  };
+
+  const updateTask = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
+    const newTodoList = todoList.map((task) => {
+      if (task.taskName === editingTask?.taskName) {
+        return { ...task, ...editingTask };
+      }
+      return task;
+    });
+
+    setTodolist(newTodoList);
+    setEditingTask(null);
+  };
 
   return (
     <div className="App">
@@ -99,7 +141,28 @@ const App = () => {
           onChange={handleChange}
         ></input>
       </div>
-      <div className="list"></div>
+      <button className="btn-edit" onClick={() => editTask(task)}>
+        Edit
+      </button>
+
+      {editingTask ? (
+        <form onSubmit={updateTask}>
+          <input
+            type="text"
+            name="taskName"
+            value={editingTask.taskName}
+            onChange={handleEditChange}
+          />
+          <input
+            type="number"
+            name="deadline"
+            value={editingTask.deadline}
+            onChange={handleEditChange}
+          />
+          <button type="submit">Update Task</button>
+        </form>
+      ) : null}
+
       <div className="txt">
         <p>
           A to-do list is a powerful tool for staying organized and productive
