@@ -7,5 +7,11 @@ type TaskListProps = {
 };
 
 export default function TaskList(props: TaskListProps) {
-  return <div>TaskList</div>;
+  return (
+    <div>
+      {props.tasks.map((task) => (
+        <TaskItem task={task}></TaskItem>
+      ))}
+    </div>
+  );
 }
