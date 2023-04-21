@@ -8,20 +8,28 @@ const ContentWrapper = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #de2222;
   font-weight: 700;
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.2rem;
+  color: #1d1a1a;
   font-style: italic;
+  font-family: "Roboto", sans-serif;
+  border-radius: 10vh;
+  box-shadow: 0 0 10px rgba(4, 0, 0, 0.2);
 `;
 
 export default function Content() {
   return (
     <ContentWrapper>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic perferendis,
-      incidunt quo repellendus eum libero veniam? Ullam, obcaecati? Eligendi
-      illum, delectus doloribus ullam vero impedit minus accusamus repellat ex
-      dolore.
+      A to-do list can help you: <br></br> Stay organized: By creating a list of
+      tasks to complete, you can prioritize your work and stay on track with
+      deadlines and important activities.<br></br> Increase productivity: Having
+      a clear plan of what you need to accomplish can help you focus on the task
+      at hand and avoid distractions, leading to increased productivity and
+      efficiency.<br></br> Reduce stress: When you have a lot to do, it's easy
+      to feel overwhelmed and stressed. By breaking down your tasks into
+      manageable steps and tracking your progress, you can feel more in control
+      and reduce your stress levels.
     </ContentWrapper>
   );
 }
