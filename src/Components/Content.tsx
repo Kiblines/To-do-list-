@@ -23,13 +23,7 @@ export default function Content() {
     <ContentWrapper>
       A to-do list can help you: <br></br> Stay organized: By creating a list of
       tasks to complete, you can prioritize your work and stay on track with
-      deadlines and important activities.<br></br> Increase productivity: Having
-      a clear plan of what you need to accomplish can help you focus on the task
-      at hand and avoid distractions, leading to increased productivity and
-      efficiency.<br></br> Reduce stress: When you have a lot to do, it's easy
-      to feel overwhelmed and stressed. By breaking down your tasks into
-      manageable steps and tracking your progress, you can feel more in control
-      and reduce your stress levels.
+      deadlines and important activities.<br></br>
     </ContentWrapper>
   );
 }

@@ -6,5 +6,5 @@ type ButtonProps = {
 };
 
 export default function Button(props: ButtonProps) {
-  return <button>{props.name}</button>;
+  return <button onClick={props.onClick}>{props.name}</button>;
 }

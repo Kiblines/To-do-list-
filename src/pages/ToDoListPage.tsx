@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Title from "../Components/Title";
 import Button from "../Components/Button";
 import Content from "../Components/Content";
 import styled from "styled-components";
 import Lines from "../assets/images/logo.png";
+import { Task } from "../types/task";
+import TaskList from "../Components/TaskList";
 
 const FlexContainer = styled.div`
   display: flex;
@@ -23,13 +25,49 @@ const Logo = styled.img`
 `;
 
 export default function ToDoListPage() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [taskName, setTaskName] = useState("");
+  const [taskDeadline, setTaskDeadline] = useState(new Date());
+
+  const handleTaskNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskName(event.target.value);
+  };
+
+  const handleTaskDeadlineChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTaskDeadline(new Date(event.target.value));
+  };
+
+  const handleAddTask = () => {
+    const newTask = {
+      name: taskName,
+      deadline: taskDeadline,
+    };
+    setTasks([...tasks, newTask]);
+    setTaskName("");
+    setTaskDeadline(new Date());
+    console.log("handleAddTask");
+  };
+
   return (
     <div>
       <Title title={"ToDoList"}></Title>
-      <input type="text" placeholder="Task"></input>
-      <input type="date" placeholder="Deadline"></input>
-      <Button onClick={() => {}} name={"Add Task"}></Button>
-      <Button onClick={() => {}} name={"Clear"}></Button>
+      <input
+        type="text"
+        placeholder="Task"
+        value={taskName}
+        onChange={handleTaskNameChange}
+      ></input>
+      <input
+        type="date"
+        placeholder="Deadline"
+        value={taskDeadline.toString()}
+        onChange={handleTaskDeadlineChange}
+      ></input>
+      <Button onClick={handleAddTask} name={"Add Task"}></Button>
+      <Button onClick={() => setTasks([])} name={"Clear"}></Button>
+      <TaskList tasks={tasks}></TaskList>
       <FlexContainer>
         <Logo src={Lines}></Logo>
         <Content></Content>
