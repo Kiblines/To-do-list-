@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { Task } from "../types/task";
-import ToDoListPage from "../pages/ToDoListPage";
 
 type TaskProps = {
   task: Task;
@@ -9,7 +8,7 @@ type TaskProps = {
 };
 
 export default function TaskItem(props: TaskProps) {
-  const [isEditActive, setIsEditActive] = useState(false);
+  const [isEditActive, setIsEditActive] = useState(false); //On donne le valeur false a la function setIsEditActive & ts comprends que c'est un boolean
   // const toto = () => {
   //   setIsEditActive(true);
   // }
