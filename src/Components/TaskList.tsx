@@ -4,13 +4,14 @@ import TaskItem from "./TaskItem";
 
 type TaskListProps = {
   tasks: Task[];
+  onEditTask: (task: Task) => void;
 };
 
 export default function TaskList(props: TaskListProps) {
   return (
     <div>
       {props.tasks.map((task) => (
-        <TaskItem task={task}></TaskItem>
+        <TaskItem onEditTask={props.onEditTask} task={task}></TaskItem>
       ))}
     </div>
   );

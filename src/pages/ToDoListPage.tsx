@@ -53,6 +53,15 @@ export default function ToDoListPage() {
     console.log("handleAddTask");
   };
 
+  const editTask = (updatedTask: Task) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === updatedTask.id) {
+        return updatedTask;
+      } else return task;
+    });
+    setTasks(updatedTasks);
+  };
+
   return (
     <div>
       <Title title={"ToDoList"}></Title>
@@ -70,7 +79,7 @@ export default function ToDoListPage() {
       ></input>
       <Button onClick={handleAddTask} name={"Add Task"}></Button>
       <Button onClick={() => setTasks([])} name={"Clear"}></Button>
-      <TaskList tasks={tasks}></TaskList>
+      <TaskList onEditTask={editTask} tasks={tasks}></TaskList>
       <FlexContainer>
         <Logo src={Lines}></Logo>
         <Content></Content>
