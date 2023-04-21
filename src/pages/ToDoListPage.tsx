@@ -28,6 +28,7 @@ export default function ToDoListPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [taskName, setTaskName] = useState("");
   const [taskDeadline, setTaskDeadline] = useState(new Date());
+  const [taskIDCounter, setTaskIdCounter] = useState(0);
 
   const handleTaskNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskName(event.target.value);
@@ -43,10 +44,12 @@ export default function ToDoListPage() {
     const newTask = {
       name: taskName,
       deadline: taskDeadline,
+      id: taskIDCounter,
     };
     setTasks([...tasks, newTask]);
     setTaskName("");
     setTaskDeadline(new Date());
+    setTaskIdCounter(taskIDCounter + 1);
     console.log("handleAddTask");
   };
 

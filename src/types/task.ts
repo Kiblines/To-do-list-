@@ -1,4 +1,5 @@
 export type Task = {
   name: string;
-  deadline: Date;
+  deadline?: Date;
+  id: number;
 };
