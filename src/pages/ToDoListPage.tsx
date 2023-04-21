@@ -56,6 +56,7 @@ export default function ToDoListPage() {
   const editTask = (updatedTask: Task) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === updatedTask.id) {
+        // Comparaison de l'id du tableau à l'id en paramètre
         return updatedTask;
       } else return task;
     });
@@ -74,7 +75,7 @@ export default function ToDoListPage() {
       <input
         type="date"
         placeholder="Deadline"
-        value={taskDeadline.toString()}
+        value={taskDeadline.toString()} //changement d'une Date en String
         onChange={handleTaskDeadlineChange}
       ></input>
       <Button onClick={handleAddTask} name={"Add Task"}></Button>
