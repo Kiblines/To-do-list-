@@ -4,7 +4,7 @@ import TaskItem from "./TaskItem";
 
 type TaskListProps = {
   tasks: Task[];
-  onEditTask: (task: Task) => void;
+  onEditTask: (task: Task) => void; // Ajout
 };
 
 export default function TaskList(props: TaskListProps) {
