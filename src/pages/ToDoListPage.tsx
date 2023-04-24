@@ -35,7 +35,7 @@ export default function ToDoListPage() {
   };
 
   const handleTaskDeadlineChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement> //Chercher un type
   ) => {
     setTaskDeadline(new Date(event.target.value));
   };
