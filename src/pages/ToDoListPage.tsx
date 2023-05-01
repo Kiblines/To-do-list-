@@ -24,6 +24,29 @@ const Logo = styled.img`
   margin: 20px;
 `;
 
+const TaskInput = styled.input`
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  width: 40%;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const FlexWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 10vh;
+  width: 50%;
+`;
+
 export default function ToDoListPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [taskName, setTaskName] = useState("");
@@ -66,21 +89,27 @@ export default function ToDoListPage() {
   return (
     <div>
       <Title title={"ToDoList"}></Title>
-      <input
-        type="text"
-        placeholder="Task"
-        value={taskName}
-        onChange={handleTaskNameChange}
-      ></input>
-      <input
-        type="date"
-        placeholder="Deadline"
-        value={taskDeadline.toString()} //changement d'une Date en String
-        onChange={handleTaskDeadlineChange}
-      ></input>
-      <Button onClick={handleAddTask} name={"Add Task"}></Button>
-      <Button onClick={() => setTasks([])} name={"Clear"}></Button>
+
+      <TaskInput></TaskInput>
+      <FlexWrapper>
+        <input
+          type="text"
+          placeholder="Task"
+          value={taskName}
+          onChange={handleTaskNameChange}
+        ></input>
+        <input
+          type="date"
+          placeholder="Deadline"
+          value={taskDeadline.toString()} //changement d'une Date en String
+          onChange={handleTaskDeadlineChange}
+        ></input>
+
+        <Button onClick={handleAddTask} name={"Add Task"}></Button>
+        <Button onClick={() => setTasks([])} name={"Clear"}></Button>
+      </FlexWrapper>
       <TaskList onEditTask={editTask} tasks={tasks}></TaskList>
+
       <FlexContainer>
         <Logo src={Lines}></Logo>
         <Content></Content>
